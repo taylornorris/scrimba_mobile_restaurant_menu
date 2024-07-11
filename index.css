@@ -35,6 +35,12 @@ h2 {
     color: #000000;
 }
 
+h3 {
+    font-size: 28px;
+    font-weight: 400;
+    color: #000000;
+}
+
 /* HEADER */
 header {
     width: 100%;
@@ -49,7 +55,7 @@ header {
 }
 
 /* MENU */
-.menu-item {
+.menu-item-card {
     width: 100%;
     height: 89px;
     display: flex;
@@ -81,10 +87,72 @@ header {
     font-size: 32px;
     color: #3C3C3C;
     text-align: center;
-    padding-bottom: 5px;
+    padding-bottom: 6px;
 }
 
 .menu-item-divider {
     margin: 51px 0 45px;
     border-bottom: 1px solid #D2D2D2;
+}
+
+/* CHECKOUT */
+.checkout-heading {
+    margin-bottom: 45px; 
+    text-align: center;
+}
+
+.checkout-item-div {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.checkout-item-name {
+    font-size: 28px;
+}
+
+.checkout-item-remove-btn {
+    margin-left: 4px;
+    border: none;
+    background-color: #ffffff;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 12px;
+    color: #BBBBBB;
+}
+
+.checkout-item-price {
+    margin-left: auto;
+    font-size: 20px;
+}
+
+.checkout-divider {
+    margin: 28px 0 14px;
+    border-bottom: 2px solid #393333;
+}
+
+.checkout-total-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.checkout-total-text {
+    font-size: 28px;
+}
+
+.checkout-total-price {
+    font-size: 20px;
+}
+
+.checkout-btn {
+    width: 100%;
+    height: 60px;
+    margin-top: 45px;
+    border: none;
+    border-radius: 3px;
+    background-color: #16DB99;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
 }
