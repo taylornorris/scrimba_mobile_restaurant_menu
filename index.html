@@ -64,12 +64,12 @@
                     <h3 class="checkout-heading">Your order</h3>
                     <div class="checkout-item-div">
                         <p class="checkout-item-name">Pizza</p>
-                        <button class="checkout-item-remove-btn">remove</button>
+                        <button class="checkout-item-remove-btn verdana">remove</button>
                         <p class="checkout-item-price">$14</p>
                     </div>
                     <div class="checkout-item-div">
                         <p class="checkout-item-name">Pizza</p>
-                        <button class="checkout-item-remove-btn">remove</button>
+                        <button class="checkout-item-remove-btn verdana">remove</button>
                         <p class="checkout-item-price">$14</p>
                     </div>
 
@@ -80,10 +80,44 @@
                         <P class="checkout-total-price">$28</P>
                     </div>
 
-                    <button class="checkout-btn">Complete order</button>
+                    <button class="checkout-btn verdana green-btn radius">Complete order</button>
                 </section>
 
-                <form id="payment-modal">
+                <form class="hidden">
+                    <div class="payment-modal-div radius">
+                        <h4 class="verdana">Enter card details</h4>
+                        <div class="input-div">
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                placeholder="Enter your name"
+                                class="verdana radius"
+                                required
+                            >
+                            <input
+                                type="number"
+                                id="card-number"
+                                name="card-number"
+                                minlength="16"
+                                maxlength="16"
+                                placeholder="Enter card number"
+                                class="verdana radius"
+                                required
+                            >
+                            <input
+                                type="number"
+                                id="cvv-number"
+                                name="cvv-number"
+                                minlength="3"
+                                maxlength="3"
+                                placeholder="Enter CVV"
+                                class="verdana radius"
+                                required
+                            >
+                        </div>
+                        <button type="submit" class="pay-btn verdana green-btn radius">Pay</button>
+                    </div> 
                 </form>
 
             </main>

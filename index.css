@@ -13,10 +13,31 @@ body {
     height: 1161px;
     margin: 20px auto;
     background-color: #ffffff;
+    color: #000000;
 }
 
 main {
     padding: 67px 46px 0;
+}
+
+button {
+    cursor: pointer;
+}
+
+.green-btn {
+    border: none;
+    background-color: #16DB99;
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.radius {
+    border-radius: 4px;
+}
+
+.hidden {
+    display: none;
 }
 
 /* TYPOGRAPHY */
@@ -32,13 +53,28 @@ h2 {
     line-height: 1;
     font-size: 28px;
     font-weight: 400;
-    color: #000000;
 }
 
-h3 {
+h3,
+.checkout-item-name,
+.checkout-total-text {
     font-size: 28px;
     font-weight: 400;
-    color: #000000;
+}
+
+h4 {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.menu-item-price,
+.checkout-item-price,
+.checkout-total-price  {
+    font-size: 20px;
+}
+
+.verdana {
+    font-family: Verdana, Tahoma, sans-serif;
 }
 
 /* HEADER */
@@ -72,10 +108,6 @@ header {
     margin: 5px 0 14px;
 }
 
-.menu-item-price {
-    font-size: 20px;
-}
-
 .menu-item-add-btn {
     margin-left: auto;
     width: 50px;
@@ -107,22 +139,16 @@ header {
     align-items: center;
 }
 
-.checkout-item-name {
-    font-size: 28px;
-}
-
 .checkout-item-remove-btn {
     margin-left: 4px;
     border: none;
     background-color: #ffffff;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 12px;
     color: #BBBBBB;
 }
 
 .checkout-item-price {
     margin-left: auto;
-    font-size: 20px;
 }
 
 .checkout-divider {
@@ -136,23 +162,48 @@ header {
     align-items: center;
 }
 
-.checkout-total-text {
-    font-size: 28px;
-}
-
-.checkout-total-price {
-    font-size: 20px;
-}
-
 .checkout-btn {
     width: 100%;
     height: 60px;
     margin-top: 45px;
-    border: none;
-    border-radius: 3px;
-    background-color: #16DB99;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    color: #ffffff;
+}
+
+/* PAYMENT MODAL */
+.payment-modal-div {
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 524px;
+    height: 542px;
+    padding:  48px 30px 25px;
+    background-color: #ffffff;
+    box-shadow: 6px 6px 256px rgb(0 0 0 / 50%);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.input-div {
+    height: 264px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+input {
+    display: block;
+    width: 100%;
+    height: 72px;
+    padding-left: 26px;
+    font-size: 20px;
+    color: #757575;
+    border: 1px solid #757575;
+}
+
+.pay-btn {
+    height: 72px;
 }
