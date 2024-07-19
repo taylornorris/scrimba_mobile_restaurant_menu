@@ -10,7 +10,7 @@ body {
 
 .container {
     width: 600px;
-    height: 1161px;
+    padding-bottom: 53px;
     margin: 20px auto;
     background-color: #ffffff;
     color: #000000;

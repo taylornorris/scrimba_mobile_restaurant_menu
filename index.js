@@ -52,6 +52,7 @@ function getOrderTotalPrice() {
     const orderTotalPrice = orderArray.reduce(function(total, currentValue) {
         return total + currentValue.price
     }, 0)
+
     return orderTotalPrice
 }
 
