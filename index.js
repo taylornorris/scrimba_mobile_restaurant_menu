@@ -1,9 +1,3 @@
-// Next step > Add remove button functionality
-// Can I use the orderArray index #?
-// I would need to add the index # to the remove button dataset
-// Will this update automatically after removing an item from the array?
-// I think if I remove the item from the array and then loop back through the render function it will work. 
-
 import { menuArray } from "./data.js"
 import { v4 as uuidv4 } from 'https://jspm.dev/uuid'
 
@@ -13,49 +7,23 @@ let orderArray = []
 // LISTEN FOR CLICKS AND CALL FUNCTIONS
 document.addEventListener("click", function(e) {
     if (e.target.dataset.addItem) {
-        addItemToOrder(e.target.dataset.addItem) // -> LINE 44
+        addItemToOrder(menuArray[e.target.dataset.addItem]) // -> LINE 44
     }
     if (e.target.dataset.removeItem) {
         removeItemFromOrder(e.target.dataset.removeItem)
     }
 })
 
-// RENDER MENU HTML
-document.getElementById("menu-section").innerHTML = getMenuHtml()
-
-function getMenuHtml() {
-    const menuItem = menuArray.map(item => {
-        const {
-            emoji,
-            name,
-            ingredients,
-            price,
-            id
-        } = item;
-
-        return `
-        <div class="menu-item-card">
-            <p class="menu-item-image">${emoji}</p>
-            <div class="menu-item-desc">
-                <h2 class="menu-item-name">${name}</h2>
-                <p class="menu-item-ingredients">${ingredients}</p>
-                <p class="menu-item-price">$${price}</p>
-            </div>
-            <button class="menu-item-add-btn" data-add-item="${id}">+</button>
-        </div>
-        <div class="menu-item-divider"></div>
-        `
-    }).join("")
-
-    return menuItem
-}
-
 // ADD ITEM TO ORDER
-function addItemToOrder(itemId) {
-    menuArray[itemId].uuid = uuidv4()
-    orderArray.push(menuArray[itemId])
+function addItemToOrder(item) {
+    orderArray.push({
+        name: item.name,
+        price: item.price,
+        uuid: uuidv4()
+    })
     renderOrderHtml()
     renderOrderTotalPrice(orderArray)
+    
 }
 
 function renderOrderHtml() {
@@ -92,4 +60,34 @@ function removeItemFromOrder(value) {
     orderArray = orderArray.filter(item => item.uuid != value)
     renderOrderHtml()
     renderOrderTotalPrice(orderArray)
+}
+
+// RENDER MENU HTML
+document.getElementById("menu-section").innerHTML = getMenuHtml()
+
+function getMenuHtml() {
+    const menuItem = menuArray.map(item => {
+        const {
+            emoji,
+            name,
+            ingredients,
+            price,
+            id
+        } = item;
+        
+        return `
+        <div class="menu-item-card">
+        <p class="menu-item-image">${emoji}</p>
+        <div class="menu-item-desc">
+        <h2 class="menu-item-name">${name}</h2>
+        <p class="menu-item-ingredients">${ingredients}</p>
+        <p class="menu-item-price">$${price}</p>
+        </div>
+        <button class="menu-item-add-btn" data-add-item="${id}">+</button>
+        </div>
+        <div class="menu-item-divider"></div>
+        `
+    }).join("")
+    
+    return menuItem
 }

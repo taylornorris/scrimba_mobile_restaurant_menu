@@ -122,6 +122,14 @@ header {
     padding-bottom: 6px;
 }
 
+.menu-item-add-btn:hover {
+    border: 2px solid #16DB99;
+}
+
+.menu-item-add-btn:active {
+    transform: scale(1.1);
+}
+
 .menu-item-divider {
     margin: 51px 0 45px;
     border-bottom: 1px solid #D2D2D2;
@@ -145,6 +153,14 @@ header {
     background-color: #ffffff;
     font-size: 12px;
     color: #BBBBBB;
+}
+
+.checkout-item-remove-btn:hover {
+    color: red;
+}
+
+.checkout-item-remove-btn:active {
+    transform: scale(1.1);
 }
 
 .checkout-item-price {
