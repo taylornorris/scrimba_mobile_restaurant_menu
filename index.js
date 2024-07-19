@@ -1,18 +1,22 @@
-// IM STUCK REMOVING ITEMS FROM ORDER
-// CREATE NEW OBJECTS TO RENDER ORDER, USING OBJECT INDEX LINKED TO REMOVE BUTTON?
-// ALSO NEED TO CONSIDER REMOVING PRICE FROM PRICE ARRAY. MAYBE SUMMING NEW OBJECT KEY:VALUES INSTEAD OF STORING IN VARIABLE?
-
+// Next step > Add remove button functionality
+// Can I use the orderArray index #?
+// I would need to add the index # to the remove button dataset
+// Will this update automatically after removing an item from the array?
+// I think if I remove the item from the array and then loop back through the render function it will work. 
 
 import { menuArray } from "./data.js"
+import { v4 as uuidv4 } from 'https://jspm.dev/uuid'
 
 let orderStarted = false
 let orderArray = []
-let orderTotal = 0
 
 // LISTEN FOR CLICKS AND CALL FUNCTIONS
 document.addEventListener("click", function(e) {
-    if(e.target.dataset.addItem) {
-        addItemToOrder(e.target.dataset.addItem) // -> LINE 50
+    if (e.target.dataset.addItem) {
+        addItemToOrder(e.target.dataset.addItem) // -> LINE 44
+    }
+    if (e.target.dataset.removeItem) {
+        removeItemFromOrder(e.target.dataset.removeItem)
     }
 })
 
@@ -21,7 +25,6 @@ document.getElementById("menu-section").innerHTML = getMenuHtml()
 
 function getMenuHtml() {
     const menuItem = menuArray.map(item => {
-
         const {
             emoji,
             name,
@@ -49,8 +52,10 @@ function getMenuHtml() {
 
 // ADD ITEM TO ORDER
 function addItemToOrder(itemId) {
+    menuArray[itemId].uuid = uuidv4()
     orderArray.push(menuArray[itemId])
     renderOrderHtml()
+    renderOrderTotalPrice(orderArray)
 }
 
 function renderOrderHtml() {
@@ -58,18 +63,12 @@ function renderOrderHtml() {
 }
 
 function getOrderHtml() {
-    
     const orderItem = orderArray.map(item => {
-        const {
-            name,
-            price
-        } = item;
-        
         return `
         <div id="checkout-item" class="checkout-item-div">
-        <p class="checkout-item-name">${name}</p>
-        <button class="checkout-item-remove-btn verdana" data-remove-item="">remove</button>
-        <p class="checkout-item-price">$${price}</p>
+        <p class="checkout-item-name">${item.name}</p>
+        <button class="checkout-item-remove-btn verdana" data-remove-item="${item.uuid}">remove</button>
+        <p class="checkout-item-price">$${item.price}</p>
         </div>
         `
     }).join("")
@@ -77,29 +76,20 @@ function getOrderHtml() {
     return orderItem
 }
 
+function renderOrderTotalPrice() {
+    document.getElementById("checkout-total-price").innerText = `$${getOrderTotalPrice()}`
+}
 
-// function addMenuItemToCheckout(itemId) {
-//     document.getElementById("checkout-items").innerHTML += renderCheckoutItemHtml(menuArray[itemId])
-// }
+function getOrderTotalPrice() {
+    const orderTotalPrice = orderArray.reduce(function(total, currentValue) {
+        return total + currentValue.price
+    }, 0)
+    return orderTotalPrice
+}
 
-// function renderCheckoutItemHtml(item) {
-//     renderCheckoutTotalPrice(item)
-    
-//     return `
-//     <div id="checkout-item" class="checkout-item-div">
-//     <p class="checkout-item-name">${item.name}</p>
-//     <button class="checkout-item-remove-btn verdana" data-remove-item="">remove</button>
-//     <p class="checkout-item-price">$${item.price}</p>
-//     </div>
-//     `    
-// }
-
-// function renderCheckoutTotalPrice(item) {
-//     orderPriceArray.push(item.price)
-
-//     orderTotal = orderPriceArray.reduce((total, currentValue) => {
-//         return total + currentValue
-//     })
-    
-//     document.getElementById("checkout-total-price").innerText = `$${orderTotal}`
-// }
+// REMOVE ITEM FROM ORDER
+function removeItemFromOrder(value) {
+    orderArray = orderArray.filter(item => item.uuid != value)
+    renderOrderHtml()
+    renderOrderTotalPrice(orderArray)
+}
