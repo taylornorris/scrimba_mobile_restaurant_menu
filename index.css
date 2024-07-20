@@ -55,11 +55,11 @@ h2 {
     font-weight: 400;
 }
 
-h3,
-.checkout-item-name,
-.checkout-total-text {
+h3 {
     font-size: 28px;
     font-weight: 400;
+    margin-bottom: 45px; 
+    text-align: center;
 }
 
 h4 {
@@ -71,6 +71,12 @@ h4 {
 .checkout-item-price,
 .checkout-total-price  {
     font-size: 20px;
+}
+
+.checkout-item-name,
+.checkout-total-text {
+    font-size: 28px;
+    /* font-weight: 400; */
 }
 
 .verdana {
@@ -136,11 +142,6 @@ header {
 }
 
 /* CHECKOUT */
-.checkout-heading {
-    margin-bottom: 45px; 
-    text-align: center;
-}
-
 .checkout-item-div {
     margin-top: 8px;
     display: flex;

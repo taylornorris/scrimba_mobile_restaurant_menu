@@ -1,13 +1,24 @@
+// Need to write logic for checkout section state
+// May need to refactor so checkout section is rendered with JS to more clearly facilitate class lists.
+// If (orderStarted) checkout hidden, else waiting for order
+// OR
+// If (orderStarted) render order, else render waiting for order. This avoids manipulating classes and rendering hidden html
+
+
 import { menuArray } from "./data.js"
 import { v4 as uuidv4 } from 'https://jspm.dev/uuid'
 
-let orderStarted = false
+const waitingForOrder = document.getElementById("waiting-for-order")
+const checkout = document.getElementById("checkout")
+
+
 let orderArray = []
+let orderStarted = false
 
 // LISTEN FOR CLICKS AND CALL FUNCTIONS
 document.addEventListener("click", function(e) {
     if (e.target.dataset.addItem) {
-        addItemToOrder(menuArray[e.target.dataset.addItem]) // -> LINE 44
+        addItemToOrder(menuArray[e.target.dataset.addItem]) 
     }
     if (e.target.dataset.removeItem) {
         removeItemFromOrder(e.target.dataset.removeItem)
@@ -21,11 +32,29 @@ function addItemToOrder(item) {
         price: item.price,
         uuid: uuidv4()
     })
-    renderOrderHtml()
-    renderOrderTotalPrice(orderArray)
-    
+    handleCheckoutSection()
 }
 
+// REMOVE ITEM FROM ORDER
+function removeItemFromOrder(value) {
+    orderArray = orderArray.filter(item => item.uuid != value)
+    handleCheckoutSection()
+}
+
+function handleCheckoutSection() {
+    renderOrderHtml()
+    renderOrderTotalPrice(orderArray)
+    handleOrderState()
+}
+
+function handleOrderState() {
+    if (orderArray.length >= 1) {
+        orderStarted = true
+    }
+    else orderStarted = false
+}
+
+// HANDLE ORDER HTML AND TOTAL PRICE
 function renderOrderHtml() {
     document.getElementById("checkout-items").innerHTML = getOrderHtml()
 }
@@ -54,13 +83,6 @@ function getOrderTotalPrice() {
     }, 0)
 
     return orderTotalPrice
-}
-
-// REMOVE ITEM FROM ORDER
-function removeItemFromOrder(value) {
-    orderArray = orderArray.filter(item => item.uuid != value)
-    renderOrderHtml()
-    renderOrderTotalPrice(orderArray)
 }
 
 // RENDER MENU HTML
