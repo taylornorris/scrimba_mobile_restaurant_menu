@@ -1,10 +1,3 @@
-// Need to write logic for checkout section state
-// May need to refactor so checkout section is rendered with JS to more clearly facilitate class lists.
-// If (orderStarted) checkout hidden, else waiting for order
-// OR
-// If (orderStarted) render order, else render waiting for order. This avoids manipulating classes and rendering hidden html
-
-
 import { menuArray } from "./data.js"
 import { v4 as uuidv4 } from 'https://jspm.dev/uuid'
 
@@ -32,31 +25,30 @@ function addItemToOrder(item) {
         price: item.price,
         uuid: uuidv4()
     })
-    handleCheckoutSection()
+    handleOrderState()
 }
 
 // REMOVE ITEM FROM ORDER
 function removeItemFromOrder(value) {
     orderArray = orderArray.filter(item => item.uuid != value)
-    handleCheckoutSection()
-}
-
-function handleCheckoutSection() {
-    renderOrderHtml()
-    renderOrderTotalPrice(orderArray)
     handleOrderState()
 }
 
 function handleOrderState() {
     if (orderArray.length >= 1) {
         orderStarted = true
+        renderOrderHtml()
     }
     else orderStarted = false
+
+    document.getElementById("waiting-for-order").classList.toggle("hidden", orderStarted)
+    document.getElementById("checkout").classList.toggle("hidden", !orderStarted)
 }
 
 // HANDLE ORDER HTML AND TOTAL PRICE
 function renderOrderHtml() {
     document.getElementById("checkout-items").innerHTML = getOrderHtml()
+    renderOrderTotalPrice()
 }
 
 function getOrderHtml() {
