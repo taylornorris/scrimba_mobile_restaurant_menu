@@ -2,7 +2,7 @@ import { menuArray } from "./data.js"
 import { v4 as uuidv4 } from 'https://jspm.dev/uuid'
 
 const waitingForOrder = document.getElementById("waiting-for-order")
-const checkout = document.getElementById("checkout")
+const checkout = document.getElementById("order-section")
 
 
 let orderArray = []
@@ -15,6 +15,9 @@ document.addEventListener("click", function(e) {
     }
     if (e.target.dataset.removeItem) {
         removeItemFromOrder(e.target.dataset.removeItem)
+    }
+    if (e.target.dataset.orderBtn) {
+        document.getElementById("modal").classList.toggle("hidden")
     }
 })
 
@@ -34,30 +37,37 @@ function removeItemFromOrder(value) {
     handleOrderState()
 }
 
+// SHOW / HIDE ORDER DEPENDING ON ORDER STATE
 function handleOrderState() {
     if (orderArray.length >= 1) {
         orderStarted = true
         renderOrderHtml()
     }
     else orderStarted = false
-
+    
     document.getElementById("waiting-for-order").classList.toggle("hidden", orderStarted)
-    document.getElementById("checkout").classList.toggle("hidden", !orderStarted)
+    document.getElementById("order-section").classList.toggle("hidden", !orderStarted)
 }
 
-// HANDLE ORDER HTML AND TOTAL PRICE
+// RENDER ORDER HTML AND TOTAL PRICE
 function renderOrderHtml() {
-    document.getElementById("checkout-items").innerHTML = getOrderHtml()
+    document.getElementById("order-items").innerHTML = getOrderHtml()
     renderOrderTotalPrice()
 }
 
 function getOrderHtml() {
     const orderItem = orderArray.map(item => {
+        const {
+            name,
+            uuid,
+            price
+        } = item
+        
         return `
-        <div id="checkout-item" class="checkout-item-div">
-        <p class="checkout-item-name">${item.name}</p>
-        <button class="checkout-item-remove-btn verdana" data-remove-item="${item.uuid}">remove</button>
-        <p class="checkout-item-price">$${item.price}</p>
+        <div id="order-item" class="order-item-div">
+        <p class="order-item-name">${name}</p>
+        <button class="order-item-remove-btn verdana" data-remove-item="${uuid}">remove</button>
+        <p class="order-item-price">$${price}</p>
         </div>
         `
     }).join("")
@@ -66,14 +76,14 @@ function getOrderHtml() {
 }
 
 function renderOrderTotalPrice() {
-    document.getElementById("checkout-total-price").innerText = `$${getOrderTotalPrice()}`
+    document.getElementById("order-total-price").innerText = `$${getOrderTotalPrice()}`
 }
 
 function getOrderTotalPrice() {
     const orderTotalPrice = orderArray.reduce(function(total, currentValue) {
         return total + currentValue.price
     }, 0)
-
+    
     return orderTotalPrice
 }
 

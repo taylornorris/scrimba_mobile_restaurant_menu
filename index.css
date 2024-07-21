@@ -6,6 +6,7 @@
 
 body {
     background-color: darkgray;
+    
 }
 
 .container {
@@ -14,6 +15,8 @@ body {
     margin: 20px auto;
     background-color: #ffffff;
     color: #000000;
+    position: relative;
+    z-index: 1;
 }
 
 main {
@@ -68,13 +71,13 @@ h4 {
 }
 
 .menu-item-price,
-.checkout-item-price,
-.checkout-total-price  {
+.order-item-price,
+.order-total-price  {
     font-size: 20px;
 }
 
-.checkout-item-name,
-.checkout-total-text {
+.order-item-name,
+.order-total-text {
     font-size: 28px;
     /* font-weight: 400; */
 }
@@ -141,14 +144,14 @@ header {
     border-bottom: 1px solid #D2D2D2;
 }
 
-/* CHECKOUT */
-.checkout-item-div {
+/* ORDER */
+.order-item-div {
     margin-top: 8px;
     display: flex;
     align-items: center;
 }
 
-.checkout-item-remove-btn {
+.order-item-remove-btn {
     margin-left: 4px;
     border: none;
     background-color: #ffffff;
@@ -156,37 +159,48 @@ header {
     color: #BBBBBB;
 }
 
-.checkout-item-remove-btn:hover {
+.order-item-remove-btn:hover {
     color: red;
 }
 
-.checkout-item-remove-btn:active {
+.order-item-remove-btn:active {
     transform: scale(1.1);
 }
 
-.checkout-item-price {
+.order-item-price {
     margin-left: auto;
 }
 
-.checkout-divider {
+.order-divider {
     margin: 28px 0 14px;
     border-bottom: 2px solid #393333;
 }
 
-.checkout-total-div {
+.order-total-div {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.checkout-btn {
+.order-btn {
     width: 100%;
     height: 60px;
     margin-top: 45px;
 }
 
-/* PAYMENT MODAL */
-.payment-modal-div {
+/* MODAL */
+form {
+    position: fixed;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.modal-div {
     position: fixed;
     right: 0;
     left: 0;
