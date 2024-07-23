@@ -209,7 +209,7 @@ form {
     margin: auto;
     width: 524px;
     height: 542px;
-    padding:  48px 30px 25px;
+    padding:  18px 30px 36px;
     background-color: #ffffff;
     box-shadow: 6px 6px 256px rgb(0 0 0 / 50%);
     text-align: center;
@@ -237,4 +237,24 @@ input {
 
 .pay-btn {
     height: 72px;
+}
+
+.modal-close-btn {
+    margin-left: auto;
+    width: 25px;
+    height: 25px;
+    border: 1.5px solid #DEDEDE;
+    border-radius: 50%;
+    background-color: #ffffff;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    color: #3C3C3C;
+    text-align: center;
+    line-height: 1;
+    padding-bottom: 4px;
+}
+
+.modal-close-btn:hover {
+    border: 1.5px solid red;
+    color: red;
 }

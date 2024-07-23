@@ -49,50 +49,14 @@
                         <P id="order-total-price" class="order-total-price"></P>
                     </div>
 
-                    <button class="order-btn verdana green-btn radius" data-order-btn="1">Complete order</button>
+                    <button id="order-btn" class="order-btn verdana green-btn radius">Complete order</button>
                 </section>
             </main>
         </div>
 
         <!-- PAYMENT MODAL -->               
         <form id="modal" class="hidden">
-            <div class="modal-div radius">
-                <h4 class="verdana">Enter card details</h4>
-                <div class="input-div">
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        placeholder="Enter your name"
-                        pattern="[a-zA-Z]{2,}"
-                        class="verdana radius"
-                        required
-                    >
-                    <input
-                        type="text"
-                        id="card-number"
-                        name="card-number"
-                        minlength="16"
-                        maxlength="16"
-                        placeholder="Enter card number"
-                        pattern="[0-9]{16}"
-                        class="verdana radius"
-                        required
-                    >
-                    <input
-                        type="text"
-                        id="cvv-number"
-                        name="cvv-number"
-                        minlength="3"
-                        maxlength="3"
-                        placeholder="Enter CVV"
-                        pattern="[0-9]{3}"
-                        class="verdana radius"
-                        required
-                    >
-                </div>
-                <button type="submit" class="pay-btn verdana green-btn radius">Pay</button>
-            </div>
+            <!-- rendered with js -->
         </form>
 
         <script src="index.js"  type="module"></script>
