@@ -1,18 +1,17 @@
-// Figure out button functionality
-// I dont think I should be using datasets if i dont need any data
-// Should I be using style.display = none instead of toggling classes?
-// I think toggle for order state makes sense 
-
-
 import { menuArray } from "./data.js"
 import { v4 as uuidv4 } from 'https://jspm.dev/uuid'
 
 let orderArray = []
 let orderStarted = false
 
+const menuSection = document.getElementById("menu-section")
+const waitingForOrder = document.getElementById("waiting-for-order")
+const orderSection = document.getElementById("order-section")
 const orderBtn = document.getElementById("order-btn")
 const modal = document.getElementById("modal")
 const modalCloseBtn = document.getElementById("modal-close-btn")
+const orderCompleteSection = document.getElementById("order-complete-section")
+const orderCompleteSummaryDiv = document.getElementById("order-complete-summary-div")
 
 // EVENT LISTENERS
 document.addEventListener("click", (e) => {
@@ -32,7 +31,8 @@ modal.addEventListener("submit", (e) => {
     e.preventDefault()
     const formData = new FormData(modal)
     const name = formData.get("name")
-    console.log(name)
+    document.getElementById("customer-name").innerText = name
+    completeOrder()
 })
 
 // ADD ITEM TO ORDER
@@ -59,8 +59,8 @@ function handleOrderState() {
     }
     else orderStarted = false
     
-    document.getElementById("waiting-for-order").classList.toggle("hidden", orderStarted)
-    document.getElementById("order-section").classList.toggle("hidden", !orderStarted)
+    waitingForOrder.classList.toggle("hidden", orderStarted)
+    orderSection.classList.toggle("hidden", !orderStarted)
 }
 
 // RENDER ORDER HTML AND TOTAL PRICE
@@ -107,8 +107,45 @@ function renderModal() {
     modal.style.display = "block"
 }
 
+//COMPLETE ORDER
+function completeOrder() {
+    menuSection.style.display = "none"
+    modal.style.display = "none"
+    waitingForOrder.style.display = "none"
+    orderSection.style.display = "none"
+
+    orderCompleteSection.style.display = "inline"
+    orderCompleteSummaryDiv.innerHTML = `
+    ${getCompletedOrderHtml()}
+    <div class="order-divider"></div>
+    <div class="order-total-div">
+        <p class="order-total-text">Total price:</p>
+        <p class="order-total-price">$${getOrderTotalPrice()}</p>
+    </div>
+    `
+    
+}
+
+function getCompletedOrderHtml() {
+    const orderItem = orderArray.map(item => {
+        const {
+            name,
+            price
+        } = item
+        
+        return `
+        <div id="completed-order-item" class="completed-order-item">
+            <p class="completed-order-item-name">${name}</p>
+            <p class="completed-order-item-price">$${price}</p>
+        </div>
+        `
+    }).join("")
+    
+    return orderItem
+}
+
 // RENDER MENU
-document.getElementById("menu-section").innerHTML = getMenuHtml()
+menuSection.innerHTML = getMenuHtml()
 
 function getMenuHtml() {
     const menuItem = menuArray.map(item => {

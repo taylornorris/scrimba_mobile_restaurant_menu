@@ -44,13 +44,13 @@ button {
 }
 
 /* TYPOGRAPHY */
-h1 {
+h1 { /* HEADER */
     font-size: 39px;
     font-weight: 400;
     color: #ffffff;
 }
 
-h2 {
+h2 { /* MENU */
     margin: 0;
     padding: 0;
     line-height: 1;
@@ -58,28 +58,36 @@ h2 {
     font-weight: 400;
 }
 
-h3 {
+h3 { /* WAITING FOR ORDER */
     font-size: 28px;
     font-weight: 400;
     margin-bottom: 45px; 
     text-align: center;
 }
 
-h4 {
+h4 { /* MODAL */
     font-size: 24px;
     font-weight: 600;
 }
 
+h5 { /* ORDER COMPLETE */
+    font-size: 32px;
+    font-weight: 400;
+    color: #065F46;
+}
+
 .menu-item-price,
 .order-item-price,
-.order-total-price  {
+.order-total-price,
+.completed-order-item-price  {
     font-size: 20px;
 }
 
 .order-item-name,
-.order-total-text {
+.order-total-text,
+.completed-order-item-name {
     font-size: 28px;
-    /* font-weight: 400; */
+    font-weight: 400
 }
 
 .verdana {
@@ -100,6 +108,10 @@ header {
 }
 
 /* MENU */
+/* #menu-section {
+    display: none;
+} */
+
 .menu-item-card {
     width: 100%;
     height: 89px;
@@ -258,4 +270,31 @@ input {
 .modal-close-btn:hover {
     border: 1.5px solid red;
     color: red;
+}
+
+/* ORDER IS COMPLETE */
+.order-complete-section {
+    display: none
+}
+
+.order-complete-message-div {
+    height: 120px;
+    margin-bottom: 26px;
+    background-color: #ECFDF5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.order-complete-summary-div {
+    width: 260px;
+    margin: auto;
+    padding: 8px;
+    border: 1px solid black;
+}
+
+.completed-order-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

@@ -51,6 +51,16 @@
 
                     <button id="order-btn" class="order-btn verdana green-btn radius">Complete order</button>
                 </section>
+
+                <!-- ORDER IS COMPLETE - HIDDEN UNTIL AFTER PAYMENT -->
+                <section id="order-complete-section" class="order-complete-section">
+                    <div id="order-complete-message-div" class="order-complete-message-div">
+                        <h5>Thanks, <span id="customer-name"></span>! Your order is being made!</h5>
+                    </div>
+                    <div id="order-complete-summary-div" class="order-complete-summary-div">
+                       <!-- rendered with js -->
+                    </div>
+                </section>
             </main>
         </div>
 
@@ -72,10 +82,8 @@
                     <input
                         type="text"
                         id="card-number"
-                        name="card-number"
-                        minlength="16"
-                        maxlength="16"
-                        placeholder="Enter card number"
+                        name="card-number"                        
+                        placeholder="Enter 16 digit card number"
                         pattern="[0-9]{16}"
                         class="verdana radius"
                         required
@@ -84,9 +92,7 @@
                         type="text"
                         id="cvv-number"
                         name="cvv-number"
-                        minlength="3"
-                        maxlength="3"
-                        placeholder="Enter CVV"
+                        placeholder="Enter 3 digit CVV"
                         pattern="[0-9]{3}"
                         class="verdana radius"
                         required
