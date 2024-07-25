@@ -17,9 +17,13 @@ Scrimba Solo Project 7 - Mobile Restaurant Menu
 Although I have not yet incorporated any of the stretch goals, I did add lots of functionality to the original design. 
 
     - There is a message asking for items to be added to start the order. 
-        When an item is added the order is shown. If all items are removed the order is hidden and the message is shown again.
+    - When an item is added the order is shown. 
+    - If all items are removed the order is hidden and the message is shown again.
     - Added order total to the pay button on the modal
     - Added close button to the modal if order needs to be edited
     - Changed screen after payment. Hides menu and shows order receipt.
     - Added various button effects.
     
+Known Issues
+    - Error message when closing modal with close button
+    - Modal drop shadow not rendering properly in Chrome
