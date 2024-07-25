@@ -25,7 +25,10 @@ document.addEventListener("click", (e) => {
 
 orderBtn.addEventListener("click", () => renderModal())
 
-modalCloseBtn.addEventListener("click", () => modal.style.display = "none")
+modalCloseBtn.addEventListener("click", () => {
+    modal.reset()
+    modal.style.display = "none"
+})
 
 modal.addEventListener("submit", (e) => {
     e.preventDefault()
